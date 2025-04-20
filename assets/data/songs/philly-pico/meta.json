@@ -1,0 +1,21 @@
+{
+    "name": "Philly Nice (Pico Mix)",
+    "artist": "tsuyunoshi (ft. Saruky)",
+    "album": "vol4",
+    "difficulties": [
+        2,
+        4,
+        11
+    ],
+    "bfBeats": [
+        1,
+        3
+    ],
+    "dadBeats": [
+        0,
+        2
+    ],
+    "compatableInsts": ["Philly"],
+    "mixName": "Pico Mix",
+    "pauseMusic": "pause/947670_hacker.07_Loop"
+}

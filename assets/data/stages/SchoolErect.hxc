@@ -1,0 +1,103 @@
+import flixel.FlxSprite;
+import flixel.math.FlxPoint;
+import flixel.FlxObject;
+import shaders.DropShadowShader;
+
+class SchoolErect extends BaseStage
+{
+
+	var bfShader:DropShadowShader;
+	var dadShader:DropShadowShader;
+	var gfShader:DropShadowShader;
+
+	public function new(){
+		super();
+
+		name = "schoolErect";
+		startingZoom = 1;
+		uiType = "Pixel";
+
+		var sky = new FlxSprite(-164, -84).loadGraphic(Paths.image("week6/weeb/erect/sky"));
+		sky.scale.set(6, 6);
+		sky.updateHitbox();
+		sky.scrollFactor.set(0.2, 0.2);
+		addToBackground(sky);
+
+		var farBackTrees = new FlxSprite(-242, -86).loadGraphic(Paths.image("week6/weeb/erect/farBackTrees"));
+		farBackTrees.scale.set(6, 6);
+		farBackTrees.updateHitbox();
+		farBackTrees.scrollFactor.set(0.5, 0.5);
+		addToBackground(farBackTrees);
+
+		var school = new FlxSprite(-200, -36).loadGraphic(Paths.image("week6/weeb/erect/school"));
+		school.scale.set(6, 6);
+		school.updateHitbox();
+		school.scrollFactor.set(0.75, 0.75);
+		addToBackground(school);
+
+		var ground = new FlxSprite(-200, 0).loadGraphic(Paths.image("week6/weeb/erect/ground"));
+		ground.scale.set(6, 6);
+		ground.updateHitbox();
+		addToBackground(ground);
+
+		var backTrees = new FlxSprite(-200, 0).loadGraphic(Paths.image("week6/weeb/erect/backTrees"));
+		backTrees.scale.set(6, 6);
+		backTrees.updateHitbox();
+		addToBackground(backTrees);
+
+		var fgTrees = new FlxSprite(-818, -1098);
+		fgTrees.frames = Paths.getPackerAtlas("week6/weeb/erect/weebTrees");
+		fgTrees.scale.set(6, 6);
+		fgTrees.updateHitbox();
+		fgTrees.animation.add('treeLoop', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 12);
+		fgTrees.animation.play('treeLoop');
+		addToBackground(fgTrees);
+
+		var leaves = new FlxSprite(-200, 0);
+		leaves.frames = Paths.getSparrowAtlas("week6/weeb/erect/petals");
+		leaves.scale.set(6, 6);
+		leaves.updateHitbox();
+		leaves.scrollFactor.set(1, 1);
+		leaves.animation.addByPrefix('leaves', 'PETALS ALL', 24, true);
+		leaves.animation.play('leaves');
+		addToMiddle(leaves);
+
+		dadStart.set(306, 900);
+		bfStart.set(1168, 900);
+		gfStart.set(724, 763);
+
+		bfCameraOffset.set(-180, 0);
+		dadCameraOffset.set(12, 0);
+
+		bfShader = new DropShadowShader();
+		bfShader.setAdjustColor(-66, -10, 24, -23);
+    	bfShader.color = 0xFF52351D;
+		bfShader.angle = 90;
+		bfShader.antialiasAmt = 0;
+		bfShader.usePixelPerfect = true;
+		bfShader.distance = 5;
+		bfShader.attachCharacter(boyfriend);
+		boyfriend.applyShader(bfShader);
+
+		dadShader = new DropShadowShader();
+		dadShader.setAdjustColor(-66, -10, 24, -23);
+    	dadShader.color = 0xFF52351D;
+		dadShader.angle = 90;
+		dadShader.antialiasAmt = 0;
+		dadShader.usePixelPerfect = true;
+		dadShader.distance = 5;
+		dadShader.attachCharacter(dad);
+		dad.applyShader(dadShader);
+
+		gfShader = new DropShadowShader();
+		gfShader.setAdjustColor(-42, -10, 5, -25);
+    	gfShader.color = 0xFF52351D;
+		gfShader.angle = 90;
+		gfShader.antialiasAmt = 0;
+		gfShader.usePixelPerfect = true;
+		gfShader.distance = 3;
+		gfShader.threshold = 0.3;
+		gfShader.attachCharacter(gf);
+		gf.applyShader(gfShader);
+	}
+}

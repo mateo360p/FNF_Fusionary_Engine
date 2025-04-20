@@ -1,0 +1,62 @@
+import flixel.FlxSprite;
+
+class PicoPixel extends CharacterInfoBase
+{
+
+	public function new(){
+		super();
+
+		info.name = "pico-pixel";
+		info.spritePath = "week6/picoPixel";
+		info.frameLoadType = setSparrow();
+		
+		info.iconName = "pico-pixel";
+		info.facesLeft = true;
+		info.deathCharacter = "PicoPixel";
+		info.antialiasing = false;
+		info.focusOffset.set(100, -100);
+		info.resultsCharacter = "PicoResults";
+
+		addByPrefix('idle', offset(), 'idle', 24, loop(false));
+		addByPrefix('singUP', offset(), 'up0', 24, loop(false));
+		addByPrefix('singLEFT', offset(), 'left0', 24, loop(false));
+		addByPrefix('singRIGHT', offset(), 'right0', 24, loop(false));
+		addByPrefix('singDOWN', offset(), 'down0', 24, loop(false));
+		addByPrefix('singUPmiss', offset(), 'upmiss', 24, loop(false));
+		addByPrefix('singLEFTmiss', offset(), 'leftmiss', 24, loop(false));
+		addByPrefix('singRIGHTmiss', offset(), 'rightmiss', 24, loop(false));
+		addByPrefix('singDOWNmiss', offset(), 'downmiss', 24, loop(false));
+
+		addByPrefix('firstDeath', offset(), "firstDeath", 24, loop(false));
+		addByPrefix('deathLoop', offset(), "deathLoop", 24, loop(true));
+		addByPrefix('deathConfirm', offset(), "deathConfirm", 24, loop(false));
+
+		info.functions.deathCreate = deathCreate;
+
+		addExtraData("scale", 6);
+		addExtraData("dropShadowMask", "week6/weeb/erect/masks/picoPixel_mask");
+		addExtraData("dropShadowMaskThreshold", 1);
+
+		addExtraData("deathSound", "gameOver/fnf_loss_sfx-pixel-pico");
+		addExtraData("deathSong", "gameOver/gameOver-pixel-pico");
+		addExtraData("deathSongEnd", "gameOver/gameOverEnd-pixel-pico");
+	}
+
+	var nene:FlxSprite;
+
+	function deathCreate(character:Character):Void{
+		nene = new FlxSprite(playstate.gf.getScreenPosition().x + 120, playstate.gf.getScreenPosition().y + 18);
+		nene.frames = Paths.getSparrowAtlas("week6/nenePixelKnifeToss");
+		nene.antialiasing = false;
+		nene.scale.set(6, 6);
+		nene.updateHitbox();
+		nene.animation.addByPrefix("throw", "knifetosscolor", 24, false);
+		nene.animation.play("throw");
+		nene.animation.finishCallback = function(name:String){
+			nene.visible = false;
+		}
+
+		addToSubstate(nene);
+	}
+
+}

@@ -1,0 +1,58 @@
+import flixel.FlxG;
+import objects.TankmenBG;
+
+class PicoSpeaker extends CharacterInfoBase
+{
+
+	public function new(){
+		super();
+
+		includeInCharacterList = false;
+		includeInGfList = true;
+
+		info.name = "pico-speaker";
+		info.spritePath = "week7/picoSpeaker";
+		info.frameLoadType = setSparrow();
+		
+		info.iconName = "pico";
+		info.focusOffset.set();
+
+		addByPrefix("idle", offset(0, 0), "Pico idle", 24, loop(false, 0), false, false);
+		addByPrefix("shoot1", offset(0, 129), "Pico shoot 1", 24, loop(true, -3), false, false);
+		addByPrefix("shoot2", offset(0, 1), "Pico shoot 2", 24, loop(true, -3), false, false);
+		addByPrefix("shoot3", offset(413, 65), "Pico shoot 3", 24, loop(true, -3), false, false);
+		addByPrefix("shoot4", offset(440, 110), "Pico shoot 4", 24, loop(true, -3), false, false);
+
+		info.idleSequence = [];
+
+		info.functions.update = update;
+		info.functions.countdownBeat = countdownBeat;
+
+		addExtraData("reposition", [17, 18]);
+	}
+
+	function update(character:Character, elpased:Float):Void{
+		if (TankmenBG.animationNotes.length > 0){
+			if (Conductor.songPosition > TankmenBG.animationNotes[0][0]){
+				//trace('played shoot anim' + TankmenBG.animationNotes[0][1]);
+
+				var shootAnim:Int = 1;
+
+				if (TankmenBG.animationNotes[0][1] >= 2)
+					shootAnim = 3;
+
+				shootAnim += FlxG.random.int(0, 1);
+
+				character.playAnim('shoot' + shootAnim, true);
+				TankmenBG.animationNotes.shift();
+			}
+		}
+	}
+
+	function countdownBeat(character:Character, beat:Int) {
+		if(beat % 2 == 0){
+			character.playAnim("idle", true);
+		}
+	}
+
+}

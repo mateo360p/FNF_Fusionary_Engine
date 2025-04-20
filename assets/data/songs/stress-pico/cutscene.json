@@ -1,0 +1,14 @@
+{
+	"startCutscene": {
+	  "name": "VideoCutscene",
+	  "args": ["week7/stressPicoCutscene", true, true, false],
+	  "storyOnly": false,
+	  "playOnce": true
+	},
+	"endCutscene": {
+		"name": "StressPicoEnding",
+		"args": [],
+		"storyOnly": false,
+		"playOnce": true
+	}
+}

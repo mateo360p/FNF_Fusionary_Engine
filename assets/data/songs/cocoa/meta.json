@@ -1,0 +1,11 @@
+{
+  "name": "Cocoa",
+  "artist": "Kawai Sprite",
+  "album": "vol1",
+  "difficulties": [1, 1, 2],
+  "bfBeats": [0, 1, 2, 3],
+  "dadBeats": [0, 1, 2, 3],
+  "compatableInsts": ["Cocoa-Pico"],
+  "mixName": "Original",
+  "pauseMusic": "pause/918379_Love-Emoji_Loop"
+}

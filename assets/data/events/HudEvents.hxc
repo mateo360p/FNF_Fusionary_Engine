@@ -1,0 +1,73 @@
+import config.Config;
+
+class HudEvents extends Events
+{
+
+	override function defineEvents() {
+		addEvent("setHudSkin", setHudSkin, SET_HUD_SKIN_DESC);
+		addEvent("hudVisible", hudVisible, HUD_VISIBLE_DESC);
+		addEvent("showSongMeta", showSongMeta, SHOW_SONG_META_DESC);
+		addEvent("swapNoteSides", swapNoteSides, SWAP_NOTE_SIDES_DESC);
+		addEvent("scrollSpeedMultiplier", scrollSpeedMultiplier, SCROLL_SPEED_MULTIPLIER_DESC);
+	}
+
+	function setHudSkin(tag:String):Void{
+		var args = Events.getArgs(tag, ["Default"]);
+		playstate.regenerateUiSkin(args[0]);
+	}
+
+	function hudVisible(tag:String):Void{
+		var args = Events.getArgs(tag);
+		playstate.camHUD.visible = Events.parseBool(args[0]);
+	}
+	
+	function showSongMeta(tag:String):Void{
+		if(playstate.meta != null){ playstate.meta.start(); }
+	}
+	
+	function swapNoteSides(tag:String):Void{
+		if(Config.centeredNotes || playstate.forceCenteredNotes){ return; } //Don't swap notes if there aren't notes to swap with.
+		
+		var args = Events.getArgs(tag, ["1b", "quartOut"]);
+		var playerNotePositions = [];
+		var opponentNotePositions = [];
+
+		for(arrow in playstate.playerStrums.members){
+			playerNotePositions.push([arrow.x, arrow.y]);
+		}
+		for(arrow in playstate.enemyStrums.members){
+			opponentNotePositions.push([arrow.x, arrow.y]);
+		}
+
+		trace(opponentNotePositions);
+		trace(playerNotePositions);
+
+		for(i in 0...playerNotePositions.length){
+			tween.tween(playstate.playerStrums.memebers[i], {x: opponentNotePositions[i][0], y: opponentNotePositions[i][1]}, 1);
+		}
+		for(i in 0...opponentNotePositions.length){
+			tween.tween(playstate.enemyStrums.memebers[i], {x: playerNotePositions[i][0], y: playerNotePositions[i][1]}, 1);
+		}
+	}
+
+	function scrollSpeedMultiplier(tag:String):Void{
+		var args = Events.getArgs(tag, ["1", "0", "linear"]);
+		var time = Events.eventConvertTime(args[1]);
+
+		if(time > 0){
+			tween.tween(playstate, {scrollSpeedMultiplier: Std.parseFloat(args[0])}, time, {ease: Events.easeNameToEase(args[3])});
+		}
+		else{
+			playstate.scrollSpeedMultiplier = Std.parseFloat(args[0]);
+		}
+	}
+	
+
+
+	//Event descriptions. Not required but it helps with charting.
+	var SET_HUD_SKIN_DESC:String = "Changes the HUD note skin.\n\nArgs:\n    String: Skin name";
+	var HUD_VISIBLE_DESC:String = "Sets the visibility of the HUD.\n\nArgs:\n    Bool: HUD visibility";
+	var SHOW_SONG_META_DESC:String = "Shows the song name and artist.";
+	var SWAP_NOTE_SIDES_DESC:String = "Swaps player and opponent note sides.\nDoes nothing if the strumline is centered.";
+	var SCROLL_SPEED_MULTIPLIER_DESC:String = "Adjusts the modifier for the note scroll speed.\n\nArgs:\n    Float: Multiplier\n    Time: Tween time\n    Ease: Tween ease";
+}

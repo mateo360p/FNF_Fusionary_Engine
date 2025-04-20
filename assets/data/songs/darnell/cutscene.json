@@ -1,0 +1,9 @@
+{
+  "startCutscene": {
+    "name": "DarnellVideo",
+    "args": [],
+    "storyOnly": true,
+    "playOnce": true
+  },
+  "endCutscene": "null"
+}

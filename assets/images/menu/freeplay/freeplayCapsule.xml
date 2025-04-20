@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="freeplayCapsule.png" width="1077" height="1126">
+	<SubTexture name="mp3 capsule w backing SELECTED0000" x="1" y="497" width="564" height="126" frameX="-35" frameY="-6" frameWidth="612" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing SELECTED0001" x="575" y="1" width="126" height="564" rotated="true" frameX="-35" frameY="-6" frameWidth="612" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing SELECTED0002" x="1" y="746" width="561" height="127" frameX="-38" frameY="-5" frameWidth="612" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing SELECTED0003" x="824" y="1" width="127" height="561" rotated="true" frameX="-38" frameY="-5" frameWidth="612" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing SELECTED0004" x="1" y="1" width="573" height="122" frameX="-26" frameY="-10" frameWidth="612" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing SELECTED0005" x="1" y="124" width="573" height="122" frameX="-26" frameY="-10" frameWidth="612" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing SELECTED0006" x="1" y="247" width="566" height="124" frameX="-33" frameY="-8" frameWidth="612" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing SELECTED0007" x="1" y="372" width="566" height="124" frameX="-33" frameY="-8" frameWidth="612" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing NOT SELECTED0000" x="1" y="999" width="558" height="126" frameX="-36" frameY="-6" frameWidth="602" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing NOT SELECTED0001" x="566" y="566" width="126" height="558" rotated="true" frameX="-36" frameY="-6" frameWidth="602" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing NOT SELECTED0002" x="693" y="566" width="127" height="556" rotated="true" frameX="-38" frameY="-5" frameWidth="602" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing NOT SELECTED0003" x="821" y="565" width="127" height="556" rotated="true" frameX="-38" frameY="-5" frameWidth="602" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing NOT SELECTED0004" x="1" y="624" width="563" height="121" frameX="-31" frameY="-11" frameWidth="602" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing NOT SELECTED0005" x="702" y="1" width="121" height="563" rotated="true" frameX="-31" frameY="-11" frameWidth="602" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing NOT SELECTED0006" x="1" y="874" width="560" height="124" frameX="-34" frameY="-8" frameWidth="602" frameHeight="132"/>
+	<SubTexture name="mp3 capsule w backing NOT SELECTED0007" x="952" y="1" width="124" height="560" rotated="true" frameX="-34" frameY="-8" frameWidth="602" frameHeight="132"/>
+</TextureAtlas>

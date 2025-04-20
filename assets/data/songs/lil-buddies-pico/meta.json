@@ -1,0 +1,9 @@
+{
+  "name": "Lil' Buddies (Pico Mix)",
+  "artist": "Rozebud",
+  "album": "lil",
+  "difficulties": [0, 0, 6],
+  "compatableInsts": ["Lil-Buddies"],
+  "mixName": "Pico Mix",
+  "pauseMusic": "pause/1100059_skippingrecord_Loop"
+}

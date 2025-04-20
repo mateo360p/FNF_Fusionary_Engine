@@ -1,0 +1,8 @@
+{
+  "startCutscene": {
+    "name": "GunsIntro",
+    "storyOnly": true,
+    "playOnce": true
+  },
+  "endCutscene": "null"
+}

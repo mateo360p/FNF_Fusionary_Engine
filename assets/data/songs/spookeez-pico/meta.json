@@ -1,0 +1,21 @@
+{
+    "name": "Spookeez (Pico Mix)",
+    "artist": "Six Impala (ft. Saster)",
+    "album": "vol4",
+    "difficulties": [
+        3,
+        4,
+        7
+    ],
+    "bfBeats": [
+        1,
+        3
+    ],
+    "dadBeats": [
+        0,
+        2
+    ],
+    "compatableInsts": ["Spookeez"],
+    "mixName": "Pico Mix",
+    "pauseMusic": "pause/911825_woah_Loop"
+}

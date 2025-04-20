@@ -1,0 +1,9 @@
+{
+  "name": "Senpai",
+  "artist": "Kawai Sprite",
+  "album": "vol2",
+  "difficulties": [1, 2, 3],
+  "compatableInsts": ["Senpai-Pico"],
+  "mixName": "Original",
+  "pauseMusic": "pause/breakfast-pixel"
+}

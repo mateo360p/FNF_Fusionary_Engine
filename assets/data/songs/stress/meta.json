@@ -1,0 +1,9 @@
+{
+  "name": "Stress",
+  "artist": "Kawai Sprite",
+  "album": "vol2",
+  "difficulties": [2, 3, 5],
+  "compatableInsts": ["Stress-Pico"],
+  "mixName": "Original",
+  "pauseMusic": "week7/distorto"
+}
