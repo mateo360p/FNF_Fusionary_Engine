@@ -106,6 +106,8 @@ class FreeplayState extends MusicBeatState
 	var selectingMode:String = "song";
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
+	var leftItem:FlxSprite;
+	var rightItem:FlxSprite;
 	var camFollow:FlxObject;
 	var camTarget:FlxPoint = new FlxPoint();
 	var versionText:FlxTextExt;
@@ -387,8 +389,7 @@ class FreeplayState extends MusicBeatState
 
 
 
-	function createFreeplayStuff():Void{
-		
+	function createFreeplayStuff():Void {
 		bg = new FlxSprite().loadGraphic(Paths.image('menu/freeplay/leftSlide'));
 		bg.color = 0xFFFFCCCC;
 		bg.antialiasing = true;
@@ -593,72 +594,56 @@ class FreeplayState extends MusicBeatState
 
 	}
 
-	function fakeMainMenuSetup():Void{
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menu/menuBG'));
-		bg.scrollFactor.x = 0;
-		bg.scrollFactor.y = 0.18;
-		bg.setGraphicSize(Std.int(bg.width * 1.18));
-		bg.updateHitbox();
-		bg.screenCenter();
-		bg.antialiasing = true;
+	function fakeMainMenuSetup():Void {
+		//------------------Assets------------------
+		var bg:FlxSprite = MainMenuState.createMenuBG("");
 		bg.cameras = [camMenu];
 		add(bg);
 
 		add(camFollow);
-
 		camMenu.follow(camFollow);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		var tex = Paths.getSparrowAtlas('menu/FNF_main_menu_assets');
+		menuItems.cameras = [camMenu];
 
-		for (i in 0...MainMenuState.optionShit.length)
-		{
-			var menuItem:FlxSprite = new FlxSprite(0, 60 + (i * 160));
-			menuItem.frames = Paths.getSparrowAtlas("menu/main/" + MainMenuState.optionShit[i]);
-			
-			menuItem.animation.addByPrefix('idle', "idle", 24);
-			menuItem.animation.addByPrefix('selected', "selected", 24);
-			menuItem.animation.play('idle');
-			menuItem.ID = i;
-			menuItem.screenCenter(X);
-			menuItems.add(menuItem);
-			menuItem.scrollFactor.set();
-			menuItem.antialiasing = true;
-			menuItem.cameras = [camMenu];
+		var id:Int = -1;
+		for (num => option in MainMenuState.optionShit) {
+			id += 1;
+			var item:FlxSprite = MainMenuState.createMenuItem(option, 0, (num * 140) + 90, menuItems, id);
+			item.y += (4 - MainMenuState.optionShit.length) * 70; // Offsets for when you have anything other than 4 items
+			item.screenCenter(X);
 		}
 
-		versionText = new FlxTextExt(5, FlxG.height - 21, 0, "FPS Plus: v" + MainMenuState.VERSION + " | Mod API: v" + PolymodHandler.API_VERSION_STRING, 16);
-		versionText.scrollFactor.set();
-		versionText.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		versionText.cameras = [camMenu];
-		add(versionText);
-
-		if(MainMenuState.SHOW_BUILD_INFO){
-			versionText.text = "FPS Plus: v" + MainMenuState.VERSION + " " + MainMenuState.NONFINAL_TAG + " | Mod API: v" + PolymodHandler.API_VERSION_STRING;
-
-			var buildInfoText = new FlxTextExt(1280 - 5, FlxG.height - 37, 0, "Build Date: " + MainMenuState.buildDate + "\n" + GitCommit.getGitBranch() +  " (" + GitCommit.getGitCommitHash() + ")", 16);
-			buildInfoText.scrollFactor.set();
-			buildInfoText.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			buildInfoText.x -= buildInfoText.width;
-			buildInfoText.cameras = [camMenu];
-			add(buildInfoText);
+		if (MainMenuState.leftOption != null) {
+			id += 1;
+			leftItem = MainMenuState.createMenuItem(MainMenuState.leftOption, 60, 350, menuItems, id);
 		}
 
-		menuItems.forEach(function(spr:FlxSprite){
+		if (MainMenuState.rightOption != null) {
+			id += 1;
+			rightItem = MainMenuState.createMenuItem(MainMenuState.rightOption, FlxG.width - 60, 350, menuItems, id);
+			rightItem.x -= rightItem.width;
+		}
+
+		var texts:FlxTypedGroup<FlxTextExt> = new FlxTypedGroup<FlxTextExt>();
+		add(texts);
+		texts.cameras = [camMenu];
+
+		MainMenuState.createMenuTexts(texts);
+
+		menuItems.forEach(function(spr:FlxSprite) {
 			spr.animation.play('idle');
-	
+
 			if (spr.ID == 1){
 				spr.animation.play('selected');
 				camTarget.set(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
-				if(introAnimType != fromMainMenu){
+				spr.centerOffsets();
+				//if(introAnimType != fromMainMenu){
 					camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
-				}
+				//}
 			}
-	
-			spr.updateHitbox();
-			spr.screenCenter(X);
 		});
 	}
 

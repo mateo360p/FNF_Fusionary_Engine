@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin' FPS Plus" file="FunkinFPSPlus" main="Main" version="FNF: v0.2.7 | FPS Plus: v6.0" company="Rozebud" />
+	<app title="Friday Night Funkin': Fusionary Engine" file="FunkinFusionaryEngine" main="Main" version="FNF: v0.2.7 | FPS Plus: v6.0" company="mateo360p" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -92,7 +92,7 @@
 
 	<haxedev set='webgl' />
 
-	<haxelib name="flixel" />
+	<haxelib name="flixel" version="5.9.0" />
 	<haxelib name="flixel-addons" />
 	<haxelib name="flixel-ui" />
 	<haxelib name="compiletime" />
@@ -159,8 +159,12 @@
 	<!--haxeflag name="-D no-traces" unless="debug" /-->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
-	<icon path="art/icons/icon128.png" />
-	<icon path="art/icons/icon16.png" size='16' />
+	<icon path="app/icons/icon16.png" size='16' />
+	<icon path="app/icons/icon32.png" size='32' />
+	<icon path="app/icons/icon64.png" size='64' />
+	<icon path="app/icons/icon128.png" size='128' />
+	<icon path="app/icons/icon256.png" size='256' />
+	<icon path="app/icons/icon512.png"/>
 
 	<!-- <haxedef name="SKIP_TO_PLAYSTATE" if="debug" /> -->
 	<!--haxedef name="NG_LOGIN" if="newgrounds" /-->
